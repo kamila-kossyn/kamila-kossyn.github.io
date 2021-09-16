@@ -1,0 +1,70 @@
+@import 'variables';
+
+@mixin default-font {
+    font-family: $font-family;
+    font-size: 1em;
+    font-weight: normal;
+    font-style: normal;
+    color: $font-color;   
+}
+$phone-only: phone-only;
+$desktop: desktop;
+
+$min-size-width-big-desktop: 1500px;
+
+$max-size-width-desktop: 1499.99px;
+$min-size-width-desktop: 1200px;
+
+$max-size-width-tablet: 1199.99px;
+$min-size-width-tablet: 700px;
+
+$max-size-width-phone: 699.99px;
+
+
+@mixin for-only-big-desktop() {
+    @media (min-width: $min-size-width-big-desktop) {
+        @content;
+    }
+}
+
+
+@mixin for-only-desktop() {
+    @media (min-width: $min-size-width-desktop) and (max-width: $max-size-width-desktop) {
+        @content;
+    }
+}
+
+
+@mixin for-only-tablet() {
+    @media (min-width: $min-size-width-tablet) and (max-width: $max-size-width-tablet) {
+        @content;
+    }
+}
+
+
+@mixin for-only-phone() {
+    @media (max-width: $max-size-width-phone) {
+        @content;
+    }
+}
+
+@mixin for-from-big-dekstop-to-desktop {
+    @include for-only-desktop() {
+        @content;
+    }
+    @include for-only-big-desktop() {
+        @content;
+    }
+}
+
+@mixin for-from-big-dekstop-to-tablet {
+    @include for-only-desktop() {
+        @content;
+    }
+    @include for-only-big-desktop() {
+        @content;
+    }
+    @include for-only-big-tablet() {
+        @content;
+    }
+}
