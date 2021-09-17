@@ -64,7 +64,7 @@ $max-size-width-phone: 699.99px;
     @include for-only-big-desktop() {
         @content;
     }
-    @include for-only-big-tablet() {
+    @include for-only-tablet() {
         @content;
     }
 }

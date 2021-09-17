@@ -1,0 +1,14 @@
+<div class="self big-desktop-to-tablet">
+    <ul>
+        <li *ngFor="let scrollToItem of scrollToData" [appScrollTo]='scrollToItem.name'>
+            <a [appScrollTo]='scrollToItem.name'>{{ scrollToItem.name }}</a>
+        </li>
+    </ul>
+</div>
+<div class="self phone">
+    <ul>
+        <li *ngFor="let scrollToItem of scrollToData" [appScrollTo]='scrollToItem.name'>
+            <a [appScrollTo]='scrollToItem.name'>{{ scrollToItem.name }}</a>
+        </li>
+    </ul>
+</div>

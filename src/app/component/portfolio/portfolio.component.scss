@@ -1,0 +1,44 @@
+@import '../../scss/shortcut';
+@import '../../scss/variables';
+@import '../../scss/mixin';
+.self {
+    background-color: $background2-color;
+
+    & > .title {
+        font-size: 3rem;
+    }
+    @include for-from-big-dekstop-to-tablet {
+      @include fullscreen-size;
+      display: grid; 
+      grid-auto-columns: 1fr; 
+      grid-template-columns: 1fr; 
+      grid-template-rows: 1fr 1fr 1fr 5fr 1fr; 
+      gap: 0px 0px; 
+      grid-template-areas: 
+        "."
+        "title"
+        "category"
+        "content"
+        "."; 
+
+      & > div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      & > .category { grid-area: category; }
+      & > .content { grid-area: content; }
+      & > .title {
+          grid-area: title;
+      }
+    }
+    @include for-only-phone {
+        @include mobile-block;
+
+        & > div {
+            display: flex;
+            justify-content: center;
+            align-items: center;;
+        }
+    }
+  }

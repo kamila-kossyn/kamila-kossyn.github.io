@@ -1,0 +1,68 @@
+@import '../../scss/shortcut';
+@import '../../scss/mixin';
+.self {
+
+    
+    & > .title {
+        font-size: 3rem;
+    }
+    & > .content {
+        font-size: 2rem;
+    }
+    @include for-from-big-dekstop-to-tablet {
+        padding-top: $navbar-height;
+        @include fullscreen-size;
+        display: grid; 
+        grid-auto-columns: 1fr; 
+        grid-template-columns: 1fr; 
+        grid-template-rows: 1fr 1fr 2fr 1fr; 
+        gap: 0px 0px; 
+        grid-template-areas: 
+          "."
+          "title"
+          "content"
+          "."; 
+        & > div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    
+        & > .title {
+            grid-area: title;
+        }
+        & > .content {
+            grid-area: content;
+        }
+    }
+
+    @include for-only-big-desktop {
+        & > .content {
+            padding-left: 1.25%;
+            padding-right: 1.25%;
+        }
+
+    }
+    @include for-only-desktop {
+        & > .content {
+            padding-left: 2.5%;
+            padding-right: 2.5%;
+        }
+    }
+
+    @include for-only-tablet {
+        & > .content {
+            padding-left: 5%;
+            padding-right: 5%;
+        }
+    }
+    @include for-only-phone {
+        @include mobile-block;
+
+        & > div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+}

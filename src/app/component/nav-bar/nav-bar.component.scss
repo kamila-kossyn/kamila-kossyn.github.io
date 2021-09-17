@@ -1,0 +1,65 @@
+@import '../../scss/variables';
+@import '../../scss/mixin';
+
+@import '../../scss/shortcut';
+@import '../../scss/mixin';
+.self {
+    width: 100%;
+}
+.self.big-desktop-to-tablet {
+
+    background-color: $navbar-background-color;
+    ul,ol {
+        list-style-type: none;
+        text-decoration: none;
+        margin: 0;
+        border: 0;
+        li {
+
+            &:hover {
+                color: $link-hover-font-color;
+            }
+        }
+    }
+    @include for-from-big-dekstop-to-tablet {
+        box-sizing: border-box;
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: $navbar-height;
+        padding: 10px 0 10px 10px;
+        ul,ol {
+            height: 100%;
+            li {
+                font-size: 2em;
+                display: inline-flex;
+                justify-content: center;
+                align-items: center;
+                height: 100%;
+                margin-right: 10px;
+            }
+        }
+    }
+    @include for-only-phone {
+        @include fullscreen-size;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        ul {
+            display: block;
+            padding: 0;
+            li {
+                font-size: 3em;
+                display: block;
+            }
+        }
+    }
+    @include for-only-phone {
+        display: none;
+    }
+}
+.self.phone{
+    @include for-from-big-dekstop-to-tablet {
+        display: none;
+    }
+}
