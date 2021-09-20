@@ -10,7 +10,6 @@
         font-size: 2rem;
     }
     @include for-from-big-dekstop-to-tablet {
-        padding-top: $navbar-height;
         @include fullscreen-size;
         display: grid; 
         grid-auto-columns: 1fr; 

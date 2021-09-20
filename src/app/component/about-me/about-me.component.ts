@@ -20,7 +20,7 @@ export class AboutMeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.scrollToName = this.scrollToService.addScrollToElement(this.scrollToName,this.nativeELement);
+    //this.scrollToName = this.scrollToService.addScrollToElement(this.scrollToName,this.nativeELement);
   }
 
 }

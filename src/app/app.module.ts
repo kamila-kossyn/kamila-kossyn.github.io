@@ -11,6 +11,7 @@ import { SecurityContext } from '@angular/core';
 import { PortfolioComponent } from './component/portfolio/portfolio.component';
 import { NavBarComponent } from './component/nav-bar/nav-bar.component';
 import { ScrollToDirective } from './directive/scroll-to.directive';
+import { FullscreenContenContainerComponent } from './component/fullscreen-conten-container/fullscreen-conten-container.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ScrollToDirective } from './directive/scroll-to.directive';
     AboutMeComponent,
     PortfolioComponent,
     NavBarComponent,
-    ScrollToDirective
+    ScrollToDirective,
+    FullscreenContenContainerComponent
   ],
   imports: [
     BrowserModule,

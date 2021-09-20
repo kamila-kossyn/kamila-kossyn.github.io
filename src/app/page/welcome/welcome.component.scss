@@ -1,5 +1,9 @@
 @import '../../scss/mixin';
-#welcome-root {
-    @include for-from-big-dekstop-to-desktop {
+.self {
+    & > app-fullscreen-conten-container:nth-child(odd) {
+        background-color: $background2-color;
+    }
+    & > app-fullscreen-conten-container:nth-child(even) {
+        background-color: $background-color;
     }
 }
