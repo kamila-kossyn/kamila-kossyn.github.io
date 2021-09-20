@@ -1,13 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ScrollToService } from 'src/app/service/scroll-to.service';
+import { BaseComponent } from '../BaseComponent';
 
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.scss']
 })
-export class NavBarComponent implements OnInit {
-
+export class NavBarComponent extends BaseComponent implements OnInit {
   public mobileMenuShow: boolean = false;
 
   public mobilePanelClass(): string {
@@ -16,14 +17,18 @@ export class NavBarComponent implements OnInit {
   }
 
   constructor(
-    private scrollToService: ScrollToService
-  ) { }
+    private scrollToService: ScrollToService,
+    route:ActivatedRoute,
+  ) {
+    super(route);
+  }
 
   ngOnInit(): void {
   }
 
 
   public get scrollToData() {
-    return this.scrollToService.ScrollToData;
+    console.log(this.currentUrl)
+    return this.scrollToService.ScrollToData.filter((value)=>value.page == this.currentUrl);
   } 
 }

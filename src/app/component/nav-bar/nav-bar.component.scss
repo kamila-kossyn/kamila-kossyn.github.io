@@ -5,98 +5,84 @@
 .self {
     width: 100%;
     background-color: $navbar-background-color;
-}
-.self.big-desktop-to-tablet {
 
-    ul,ol {
-        list-style-type: none;
-        text-decoration: none;
-        margin: 0;
-        border: 0;
-        li {
+    &.big-desktop-to-tablet {
 
-            &:hover {
-                color: $link-hover-font-color;
-            }
-        }
-    }
-    @include for-from-big-dekstop-to-tablet {
-        box-sizing: border-box;
-        position: fixed;
-        top: 0;
-        left: 0;
-        height: $navbar-height;
-        padding: 10px 0 10px 10px;
         ul,ol {
-            height: 100%;
+            list-style-type: none;
+            text-decoration: none;
+            margin: 0;
+            border: 0;
             li {
-                font-size: 2em;
-                display: inline-flex;
-                justify-content: center;
-                align-items: center;
-                height: 100%;
-                margin-right: 10px;
-            }
-        }
-    }
-    @include for-only-phone {
-        @include fullscreen-size;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        ul {
-            display: block;
-            padding: 0;
-            li {
-                font-size: 3em;
-                display: block;
-            }
-        }
-    }
-    @include for-only-phone {
-        display: none;
-    }
-}
-.self.phone{
-    @include for-from-big-dekstop-to-tablet {
-        display: none;
-    }
-    &.switch {
-        @include for-only-phone  {
-            position: fixed;
-            height: $navbar-height;
-            display: flex;
-            align-items: center;
-            justify-content: start;
-            button {
-                @include icon-button($navbar-background-color,$background2-color,$font-color);
-                margin-left: 5px;
-            }
-        }
-    }
-    @include for-only-phone  {
-        &.close, &.open {
-            position: fixed;
-            top: $navbar-height;
-            left: 0;
-            ul {
-                display: block;
-                padding: 0;
-                padding-left: 10px;
-                li {
-                    font-size: 1.5em;
-                    display: block;
+    
+                &:hover {
+                    color: $link-hover-font-color;
                 }
             }
-
         }
-        &.close {
-            max-height: 0;
-            overflow: hidden;
+        @include for-from-big-dekstop-to-tablet {
+            box-sizing: border-box;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: $navbar-height;
+            padding: 10px 0 10px 10px;
+            ul,ol {
+                height: 100%;
+                li {
+                    font-size: 2em;
+                    display: inline-flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 100%;
+                    margin-right: 10px;
+                }
+            }
         }
-        &.open {
-            max-height: 100vh;
-            overflow: scroll;
+        @include for-only-phone {
+            display: none;
         }
     }
+    &.phone{
+        @include for-from-big-dekstop-to-tablet {
+            display: none;
+        }
+        @include for-only-phone  {
+            &.switch {
+                position: fixed;
+                height: $navbar-height;
+                display: flex;
+                align-items: center;
+                justify-content: start;
+                button {
+                    @include icon-button($navbar-background-color,$background2-color,$font-color);
+                    margin-left: 5px;
+                }
+            }
+            &.close, &.open {
+                position: fixed;
+                top: $navbar-height;
+                left: 0;
+                ul {
+                    display: block;
+                    padding: 0;
+                    padding-left: 10px;
+                    li {
+                        font-size: 1.5em;
+                        display: block;
+                    }
+                }
+    
+            }
+            &.close {
+                max-height: 0;
+                overflow: hidden;
+            }
+            &.open {
+                max-height: 100vh;
+                overflow: scroll;
+            }
+        }
+    }
+    
 }

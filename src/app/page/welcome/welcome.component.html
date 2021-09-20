@@ -1,9 +1,9 @@
 <div class="self">
     <app-nav-bar></app-nav-bar>
-    <app-fullscreen-conten-container scrollToName="About Me">
+    <app-fullscreen-conten-container scrollToName="About Me" (page)="currentUrl">
         <app-about-me></app-about-me>
     </app-fullscreen-conten-container>
-    <app-fullscreen-conten-container scrollToName="Portfolio">
+    <app-fullscreen-conten-container scrollToName="Portfolio" (page)="currentUrl">
         <app-portfolio></app-portfolio>
     </app-fullscreen-conten-container>
 </div>

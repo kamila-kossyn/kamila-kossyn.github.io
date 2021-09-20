@@ -1,14 +1,15 @@
-import { Component, ElementRef, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ScrollToService } from 'src/app/service/scroll-to.service';
 
 @Component({
-  selector: 'app-fullscreen-conten-container',
+  selector: 'app-fullscreen-conten-container[scrollToName][page]',
   templateUrl: './fullscreen-conten-container.component.html',
   styleUrls: ['./fullscreen-conten-container.component.scss']
 })
 export class FullscreenContenContainerComponent implements OnInit {
 
   @Input() scrollToName: string = '';
+  @Input() page: string = '';
   constructor(
     private scrollToService: ScrollToService,
     private elementRef: ElementRef
@@ -18,8 +19,9 @@ export class FullscreenContenContainerComponent implements OnInit {
     return this.elementRef.nativeElement;
   }
 
+
   ngOnInit(): void {
-    this.scrollToName = this.scrollToService.addScrollToElement(this.scrollToName,this.nativeELement);
+    this.scrollToService.addScrollToElement(this.scrollToName, this.page,this.nativeELement);
   }
 
 }

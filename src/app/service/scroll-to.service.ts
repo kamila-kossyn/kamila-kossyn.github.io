@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
+import { isDevMode } from '@angular/core';
 
 interface IScrollToData {
   name: string,
+  page: string,
   top?: number,
   left?: number,
   element?: HTMLElement,
@@ -16,23 +18,31 @@ export class ScrollToService {
 
   constructor() { }
 
-
-  public addScrollToPosition(name: string, top:number, left:number, suffix: number = 0): string {
-    if((this.scrollToData.findIndex((value)=>value.name == name) == -1) && (suffix == 0)) {
-      this.scrollToData.push({name:name,top:top,left:left})
-      return name;
+  private addScrollTo(scrollToItem: IScrollToData): void {
+    if(
+      this.scrollToData.findIndex((value)=>{
+        return value.name == scrollToItem.name && value.page == scrollToItem.page
+      }) == -1
+    ) {
+      this.scrollToData.push(scrollToItem);
     } else {
-      let suffix_name = name + "_" + suffix;
-      if (this.scrollToData.findIndex((value)=>value.name == suffix_name) == -1) {
-        this.scrollToData.push({name:suffix_name,top:top,left:left})
-        return suffix_name;
-      } else {
-        return this.addScrollToPosition(name,top,left,suffix);
+      if(isDevMode()) {
+        console.error("Doubled scroll to section on one page");
       }
     }
   }
 
-  public addScrollToElement(name: string, element: HTMLElement, scrollIntoViewOptions?: ScrollIntoViewOptions, suffix: number = 0): string {
+
+  public addScrollToPosition(name: string, page: string, top:number, left:number, suffix: number = 0): void {
+    this.addScrollTo({
+      name: name,
+      page: page,
+      top: top,
+      left: left
+    });
+  }
+
+  public addScrollToElement(name: string, page:string, element: HTMLElement, scrollIntoViewOptions?: ScrollIntoViewOptions): void {
     if(scrollIntoViewOptions == undefined) {
       scrollIntoViewOptions = {};
     }
@@ -45,18 +55,12 @@ export class ScrollToService {
     if(scrollIntoViewOptions.inline == undefined) {
       scrollIntoViewOptions.inline = 'center';
     }
-    if((this.scrollToData.findIndex((value)=>value.name == name) == -1) && (suffix == 0)) {
-      this.scrollToData.push({name:name,element:element, scrollIntoViewOptions: scrollIntoViewOptions})
-      return name;
-    } else {
-      let suffix_name = name + "_" + suffix;
-      if (this.scrollToData.findIndex((value)=>value.name == suffix_name) == -1) {
-        this.scrollToData.push({name:suffix_name,element:element, scrollIntoViewOptions: scrollIntoViewOptions})
-        return suffix_name;
-      } else {
-        return this.addScrollToElement(name,element,scrollIntoViewOptions,suffix);
-      }
-    }
+    this.addScrollTo({
+      name: name,
+      page: page,
+      element: element,
+      scrollIntoViewOptions: scrollIntoViewOptions
+    });
   }
 
   public updateScrollToPosition(name: string, top:number, left:number): void {

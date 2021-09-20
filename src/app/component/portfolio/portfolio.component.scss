@@ -9,6 +9,9 @@
     & > .title {
         font-size: 3rem;
     }
+    & > .category {
+      font-size: 2rem;
+    }
     @include for-from-big-dekstop-to-tablet {
       @include fullscreen-size;
       display: grid; 

@@ -12,6 +12,8 @@ import { PortfolioComponent } from './component/portfolio/portfolio.component';
 import { NavBarComponent } from './component/nav-bar/nav-bar.component';
 import { ScrollToDirective } from './directive/scroll-to.directive';
 import { FullscreenContenContainerComponent } from './component/fullscreen-conten-container/fullscreen-conten-container.component';
+import { FiveOClockCavesComponent } from './page/five-oclock-caves/five-oclock-caves.component';
+import { ImageComponent } from './component/image/image.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { FullscreenContenContainerComponent } from './component/fullscreen-conte
     PortfolioComponent,
     NavBarComponent,
     ScrollToDirective,
-    FullscreenContenContainerComponent
+    FullscreenContenContainerComponent,
+    FiveOClockCavesComponent,
+    ImageComponent
   ],
   imports: [
     BrowserModule,
