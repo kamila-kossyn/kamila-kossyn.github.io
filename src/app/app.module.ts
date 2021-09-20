@@ -11,6 +11,7 @@ import { SecurityContext } from '@angular/core';
 import { PortfolioComponent } from './component/portfolio/portfolio.component';
 import { NavBarComponent } from './component/nav-bar/nav-bar.component';
 import { ScrollToDirective } from './directive/scroll-to.directive';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +28,7 @@ import { ScrollToDirective } from './directive/scroll-to.directive';
       sanitize: SecurityContext.NONE
     }),
     HttpClientModule,
-    MarkdownModule.forRoot({ loader: HttpClient })
+    MarkdownModule.forRoot({ loader: HttpClient }),
   ],
   providers: [],
   bootstrap: [AppComponent]

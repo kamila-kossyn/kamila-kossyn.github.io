@@ -17,4 +17,5 @@
 }
 @mixin mobile-block {
     padding: 30px 15px;
+    padding-top: $navbar-height;
 }

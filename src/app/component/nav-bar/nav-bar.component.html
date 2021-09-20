@@ -5,10 +5,15 @@
         </li>
     </ul>
 </div>
-<div class="self phone">
+<div class="self phone switch">
+    <button (click)="mobileMenuShow = !mobileMenuShow">
+        <span class="material-icons">menu</span>
+    </button>
+</div>
+<div class="self phone {{ mobilePanelClass() }}">
     <ul>
         <li *ngFor="let scrollToItem of scrollToData" [appScrollTo]='scrollToItem.name'>
-            <a [appScrollTo]='scrollToItem.name'>{{ scrollToItem.name }}</a>
+            <a [appScrollTo]='scrollToItem.name' (click)="mobileMenuShow = false">{{ scrollToItem.name }}</a>
         </li>
     </ul>
 </div>

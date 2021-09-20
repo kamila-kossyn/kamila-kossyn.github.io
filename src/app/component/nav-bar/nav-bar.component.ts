@@ -8,6 +8,13 @@ import { ScrollToService } from 'src/app/service/scroll-to.service';
 })
 export class NavBarComponent implements OnInit {
 
+  public mobileMenuShow: boolean = false;
+
+  public mobilePanelClass(): string {
+    if(this.mobileMenuShow) return 'open';
+    return 'close';
+  }
+
   constructor(
     private scrollToService: ScrollToService
   ) { }

@@ -2,13 +2,12 @@
 @import '../../scss/mixin';
 
 @import '../../scss/shortcut';
-@import '../../scss/mixin';
 .self {
     width: 100%;
+    background-color: $navbar-background-color;
 }
 .self.big-desktop-to-tablet {
 
-    background-color: $navbar-background-color;
     ul,ol {
         list-style-type: none;
         text-decoration: none;
@@ -61,5 +60,43 @@
 .self.phone{
     @include for-from-big-dekstop-to-tablet {
         display: none;
+    }
+    &.switch {
+        @include for-only-phone  {
+            position: fixed;
+            height: $navbar-height;
+            display: flex;
+            align-items: center;
+            justify-content: start;
+            button {
+                @include icon-button($navbar-background-color,$background2-color,$font-color);
+                margin-left: 5px;
+            }
+        }
+    }
+    @include for-only-phone  {
+        &.close, &.open {
+            position: fixed;
+            top: $navbar-height;
+            left: 0;
+            ul {
+                display: block;
+                padding: 0;
+                padding-left: 10px;
+                li {
+                    font-size: 1.5em;
+                    display: block;
+                }
+            }
+
+        }
+        &.close {
+            max-height: 0;
+            overflow: hidden;
+        }
+        &.open {
+            max-height: 100vh;
+            overflow: scroll;
+        }
     }
 }
