@@ -1,4 +1,9 @@
-<!--  -->
-<div class="self" [ngStyle]="styleContainer">
-    <img [src]='imgSrc' class="{{ classes }}" [ngStyle]="styleImg" alt="image">
-</div>
+<div [ngStyle]="styleContent"
+    (mouseenter) ="hoverContent = true"  (mouseleave) ="hoverContent = false" (click)='onClickedCallback()'>
+        <ng-content></ng-content>
+    </div>
+<div class="container" [ngStyle]="styleContainer"
+    (mouseenter) ="hoverContainer = true"  (mouseleave) ="hoverContainer = false" (click)='onClickedCallback()'>
+    <img [src]='imgSrc' class="{{ classes }}" [ngStyle]="styleImg" alt="image"
+    (mouseenter) ="hoverImg = true"  (mouseleave) ="hoverImg = false" (click)='onClickedCallback()'>
+</div>                                                                                                                                              

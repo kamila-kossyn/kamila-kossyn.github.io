@@ -10,6 +10,9 @@ export class FullscreenContenContainerComponent implements OnInit {
 
   @Input() scrollToName: string = '';
   @Input() page: string = '';
+
+  public elementIdScrollTo: string = '';
+ 
   constructor(
     private scrollToService: ScrollToService,
     private elementRef: ElementRef
@@ -21,7 +24,7 @@ export class FullscreenContenContainerComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.scrollToService.addScrollToElement(this.scrollToName, this.page,this.nativeELement);
+    this.elementIdScrollTo = this.scrollToService.addScrollToElement(this.scrollToName, this.page);
   }
 
 }

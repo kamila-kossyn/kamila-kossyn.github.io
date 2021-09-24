@@ -1,7 +1,10 @@
 <div class="self">
     <div class="title">Portfolio</div>
-    <div class="category">Five o'clock caves</div>
+    <div class="category"></div>
     <div class="content">
-        <app-image path='five_o_clock_caves/BritishDwarfs.png' width='30vw' height='30vw'></app-image>
+        <app-image [routerLink]="['/five-o-clock-caves']" path='five_o_clock_caves/BritishDwarfs.png' width='30vw' height='30vw'
+            [onClicked]='five_o_clock_caves'>
+            <span style="font-size: 1.5em;">Five o'clock caves</span>
+        </app-image>
     </div>
 </div>

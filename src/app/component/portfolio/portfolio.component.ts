@@ -19,6 +19,10 @@ export class PortfolioComponent implements OnInit {
     return this.elementRef.nativeElement;
   }
 
+  public five_o_clock_caves(): void {
+    console.log('five_o_clock_caves');
+  }
+
   ngOnInit(): void {
     //this.scrollToName = this.scrollToService.addScrollToElement(this.scrollToName,this.nativeELement);
   }

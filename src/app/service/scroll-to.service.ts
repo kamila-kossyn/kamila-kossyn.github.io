@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { isDevMode } from '@angular/core';
+import { BehaviorSubject, Observable, ReplaySubject } from 'rxjs';
+import { util } from '../util/util';
 
-interface IScrollToData {
+export interface IScrollToData {
   name: string,
   page: string,
-  top?: number,
-  left?: number,
-  element?: HTMLElement,
+  id: string,
+  element?: string,
   scrollIntoViewOptions?: ScrollIntoViewOptions
 }
 @Injectable({
@@ -15,34 +16,31 @@ interface IScrollToData {
 export class ScrollToService {
 
   private scrollToData: Array<IScrollToData> = [];
+  private _scrollToDataUpdateEvent: ReplaySubject<Array<IScrollToData>> = new ReplaySubject<Array<IScrollToData>>(1);
+  public get scrollToDataUpdateEvent(): Observable<Array<IScrollToData>> {
+    return this._scrollToDataUpdateEvent;
+  } 
 
   constructor() { }
 
-  private addScrollTo(scrollToItem: IScrollToData): void {
-    if(
-      this.scrollToData.findIndex((value)=>{
-        return value.name == scrollToItem.name && value.page == scrollToItem.page
-      }) == -1
-    ) {
-      this.scrollToData.push(scrollToItem);
-    } else {
-      if(isDevMode()) {
-        console.error("Doubled scroll to section on one page");
-      }
+  private addScrollTo(scrollToItem: IScrollToData): string {
+    let index = this.scrollToData.findIndex((value) => { return value.id == scrollToItem.id } );
+    if(index != -1) {
+      this.scrollToData.splice(index,1);
     }
+    let lengthId = 4;
+    let element: string = util.makeid(lengthId);
+    while(this.scrollToData.findIndex( (value) => value.element == element  ) != -1 ) {
+      lengthId++;
+      element = util.makeid(lengthId);
+    }
+    scrollToItem.element = element;
+    this.scrollToData.push(scrollToItem);
+    this._scrollToDataUpdateEvent.next(this.scrollToData);
+    return element;
   }
 
-
-  public addScrollToPosition(name: string, page: string, top:number, left:number, suffix: number = 0): void {
-    this.addScrollTo({
-      name: name,
-      page: page,
-      top: top,
-      left: left
-    });
-  }
-
-  public addScrollToElement(name: string, page:string, element: HTMLElement, scrollIntoViewOptions?: ScrollIntoViewOptions): void {
+  public addScrollToElement(name: string, page:string, scrollIntoViewOptions?: ScrollIntoViewOptions): string {
     if(scrollIntoViewOptions == undefined) {
       scrollIntoViewOptions = {};
     }
@@ -55,46 +53,32 @@ export class ScrollToService {
     if(scrollIntoViewOptions.inline == undefined) {
       scrollIntoViewOptions.inline = 'center';
     }
-    this.addScrollTo({
+    let id = page+"_"+name;
+    id = id.toLowerCase().replace(' ','_');
+    return this.addScrollTo({
       name: name,
       page: page,
-      element: element,
-      scrollIntoViewOptions: scrollIntoViewOptions
+      scrollIntoViewOptions: scrollIntoViewOptions,
+      id: id
     });
   }
 
-  public updateScrollToPosition(name: string, top:number, left:number): void {
-    let index = this.scrollToData.findIndex((value)=>value.name ==name);
-    if(index == -1) {
-      return;
-    }
-    this.scrollToData[index].top = top;
-    this.scrollToData[index].left = left;
-  }
-
-  private scrollToXY(top: number,left: number): void {
-    console.log({
-      left: left,
-      top: top,
-      behavior: 'smooth'
-    })
-    window.scrollTo({
-      left: left,
-      top: top,
-      behavior: 'smooth'
-    });
-  }
 
   public scrollTo(name: string) {
     let scrollToItem = this.scrollToData.find((value)=>value.name == name);
     if (scrollToItem == undefined || scrollToItem == null) {
       return;
     }
-    if (scrollToItem.top != undefined && scrollToItem.left != undefined) {
-      this.scrollToXY(scrollToItem.top,scrollToItem.left)
+    if (scrollToItem.element == '' || scrollToItem.element == null) {
+      return;
     }
-    if (scrollToItem.element != undefined) {
-      scrollToItem.element.scrollIntoView({
+    let htmlelement: HTMLElement | null = document.querySelector('[data-scroll-to="'+scrollToItem.element+'"]');
+    if(htmlelement == null) {
+      return;
+    }
+    
+    if (htmlelement != undefined) {
+      htmlelement.scrollIntoView({
         behavior: 'smooth',
         block: 'start',
         inline: 'center'

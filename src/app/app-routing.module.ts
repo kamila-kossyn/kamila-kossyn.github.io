@@ -5,9 +5,9 @@ import { WelcomeComponent } from './page/welcome/welcome.component';
 
 const routes: Routes = [
 
-  {path: '',component: WelcomeComponent},
-  {path: 'welcome',component: WelcomeComponent},
-  {path: 'five-o-clock-caves', component: FiveOClockCavesComponent}
+  {path: '',component: WelcomeComponent, data: {animation: 'Home'}},
+  {path: 'welcome',component: WelcomeComponent, data: {animation: 'Home'}},
+  {path: 'five-o-clock-caves', component: FiveOClockCavesComponent, data: {animation: 'Page'}}
 ];
 
 @NgModule({
@@ -22,3 +22,6 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+
+
+

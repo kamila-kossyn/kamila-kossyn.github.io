@@ -14,6 +14,7 @@ import { ScrollToDirective } from './directive/scroll-to.directive';
 import { FullscreenContenContainerComponent } from './component/fullscreen-conten-container/fullscreen-conten-container.component';
 import { FiveOClockCavesComponent } from './page/five-oclock-caves/five-oclock-caves.component';
 import { ImageComponent } from './component/image/image.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { ImageComponent } from './component/image/image.component';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     MarkdownModule.forRoot({
       sanitize: SecurityContext.NONE

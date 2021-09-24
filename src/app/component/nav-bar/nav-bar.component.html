@@ -1,5 +1,8 @@
 <div class="self big-desktop-to-tablet">
     <ul>
+        <li *ngIf="backButtonShow" [routerLink]="['/']">
+            <a [routerLink]="['/']">Back</a>
+        </li>
         <li *ngFor="let scrollToItem of scrollToData" [appScrollTo]='scrollToItem.name'>
             <a [appScrollTo]='scrollToItem.name'>{{ scrollToItem.name }}</a>
         </li>
@@ -12,6 +15,9 @@
 </div>
 <div class="self phone {{ mobilePanelClass() }}">
     <ul>
+        <li *ngIf="backButtonShow" [routerLink]="['/']">
+            <a [routerLink]="['/']">Back</a>
+        </li>
         <li *ngFor="let scrollToItem of scrollToData" [appScrollTo]='scrollToItem.name'>
             <a [appScrollTo]='scrollToItem.name' (click)="mobileMenuShow = false">{{ scrollToItem.name }}</a>
         </li>

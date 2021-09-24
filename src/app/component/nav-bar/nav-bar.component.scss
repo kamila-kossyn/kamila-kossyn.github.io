@@ -1,11 +1,13 @@
 @import '../../scss/variables';
 @import '../../scss/mixin';
-
 @import '../../scss/shortcut';
 .self {
     width: 100%;
     background-color: $navbar-background-color;
-
+    ul,ol {
+        li {
+        }
+    }
     &.big-desktop-to-tablet {
 
         ul,ol {
@@ -14,7 +16,6 @@
             margin: 0;
             border: 0;
             li {
-    
                 &:hover {
                     color: $link-hover-font-color;
                 }
